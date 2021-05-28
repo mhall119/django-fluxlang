@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <style>
+table {
+    border: 1px solid;
+    margin-bottom: 2em;
+}
+table td, table th {
+    padding: 1em;
+    margin: 0px;
+    border: #bfbfbf 1px solid;
+}
+        </style>
+    </head>
+    <body>
+        <h3>Flux Results</h3>
+        <pre>
+{{ query.flux }}
+        </pre>
+
+        {% for table in query %}
+        <table>
+            {% for row in table.records %}
+            {% if forloop.first %}
+            <tr>
+                {% for key in row.values %}
+                <th>{{key}}</th>
+                {% endfor %}
+            </tr>
+            {% endif %}
+            <tr>
+                {% for key, value in row.values.items %}
+                <td>{{value}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endfor %}
+    </body>
+</html>
